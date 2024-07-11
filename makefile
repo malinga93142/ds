@@ -6,7 +6,7 @@ LDFLAGS = -shared     # Flags for linking shared library
 
 # Define directories (modify as needed)
 SRC_DIR = .           # Source directory (where .c and .cpp files are)
-HDR_DIR = ../include     # Header directory (where .h files are)
+HDR_DIR = include     # Header directory (where .h files are)
 LIB_DIR = /usr/lib     # Target directory for shared library
 INC_DIR = /usr/include  # Target directory for headers
 
