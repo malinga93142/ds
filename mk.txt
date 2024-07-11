@@ -1,0 +1,4 @@
+Words -> BuildList -> GetWord
+      .           |->RETRIEVE(AVL_RETRIEVE)
+      .           |->InsertWord(AVL_INSERT)
+      .-> PrintList -> printWord(AVL_TRAVERSE)

@@ -1,0 +1,94 @@
+node del(root, shorter){
+    node righttree;
+    node lefttree;
+
+    switch(root->balance){
+        case LH:
+            lefttree = root->left;
+            if(lefttree->bal == RH){
+                righttree = lefttree->righttree;
+                switch(righttree->bal){
+                    case LH:
+                        root->bal = RH;
+                        lefttree->bal = EH;
+                        break;
+                    case EH:
+                        root->bal = EH;
+                        lefttree->bal = EH;
+                        break;
+                    case RH:
+                        lefttree->bal = LH;
+                        root->bal = EH;
+                        break;
+                } // switch
+
+                root->left = rotateLeft(lefttree);
+                root = rotateRight(root);
+            } // lefttree == RH
+            else{
+                switch(lefttree->bal){
+                    case LH:
+                    case RH:
+                        root->bal = EH;
+                        lefttree->bal = EH;
+                        break;
+                    case EH:
+                        root->balance = LH;
+                        lefttree->bal = RH;
+                        shorter = false;
+                        break;
+                } // switch lefttree->bal
+
+                root = rotateRight(root);
+            } // else
+    } // switch
+    return root;
+}
+
+
+
+
+insrightbal(root, taller){
+    node righttree;
+    node lefttree;
+
+    righttree = root->right;
+
+    switch(righttree->balance)
+    {
+        case LH:
+            lefttree = righttree->right;
+            switch(lefttree->balance){
+                case LH:
+                    root->balance = EH;
+                    righttree->balance=RH;
+                    break;
+                case EH:
+                    root->balance = EH;
+                    righttree->balance= LH;
+                    break;
+                case RH:
+                    root->balance = LH;
+                    righttree->balance=EH;
+                    break;
+            } //switch lefttree
+            lefttree->balance = EH;
+            root->right = rotateRight(righttree);
+            root = rotateLeft(root);
+            *taller = false;
+            break;
+        case EH:
+            print("\n\aError in insrightbal\n");
+            exit(100);
+        case RH:
+            root->balance = EH;
+            righttree->balance=EH;
+
+            root = rotateLeft(root);
+            *taller = false;
+            break;
+        
+        
+    }
+    return root;
+}

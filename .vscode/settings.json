@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "brk.h": "c",
+        "node.h": "c"
+    }
+}
